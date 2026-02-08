@@ -204,15 +204,23 @@ CREATE TABLE IF NOT EXISTS logs (
 conn.commit()
 
 # =====================================================
-# LOAD YOLO
+# SAFE YOLO MODEL LOADER (STREAMLIT CLOUD READY)
 # =====================================================
-MODEL_PATH = "runs/detect/rdd_yolov8n/weights/best.pt"
+import os
 
-@st.cache_resource
+@st.cache_resource(show_spinner="🔄 Loading AI model...")
 def load_model():
-    return YOLO(MODEL_PATH)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(base_dir, "best.pt")
+
+    if not os.path.exists(model_path):
+        st.error("❌ YOLO model file not found in root directory!")
+        st.stop()
+
+    return YOLO(model_path)
 
 model = load_model()
+
 
 # =====================================================
 # COST MODEL
@@ -450,3 +458,4 @@ if img is not None:
         "Road_Damage_Report.pdf",
         mime="application/pdf"
     )
+
