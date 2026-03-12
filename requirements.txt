@@ -1,7 +1,7 @@
 streamlit
 opencv-python-headless
-numpy
+numpy<2
 pillow
-ultralytics==8.0.196
-torch==1.13.1
-torchvision==0.14.1
+ultralytics
+torch>=2.5
+torchvision>=0.20
