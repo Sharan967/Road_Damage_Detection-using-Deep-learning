@@ -1,7 +1,11 @@
 import streamlit as st
 import streamlit.components.v1 as components
-import cv2
-import numpy as np
+try:
+    import cv2
+except ImportError:
+    import os
+    os.system("pip install opencv-python-headless")
+    import cv2
 from ultralytics import YOLO
 from PIL import Image
 import time, io, datetime, sqlite3
