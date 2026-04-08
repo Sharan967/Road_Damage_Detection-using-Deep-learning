@@ -8,6 +8,7 @@ except ImportError:
     import cv2
 from ultralytics import YOLO
 from PIL import Image
+import numpy as np
 import time, io, datetime, sqlite3
 from sklearn.linear_model import LinearRegression
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Image as RLImage
